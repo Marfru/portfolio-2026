@@ -7,25 +7,25 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-24">
+    <footer className="mt-12 mb-8">
       <div className="max-w-4xl mx-auto px-6 pt-12 pb-6">
         <div className="flex justify-between">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl text-center md:text-left md:justify-between">
-            <div className="flex flex-col items-center md:items-start md:col-span-1">
-              <div className="flex items-center gap-3 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl text-center md:text-left md:justify-between">
+            <div className="flex flex-col items-center md:items-start md:col-span-1 gap-4 md:gap-0">
+              <div className="flex flex-col md:flex-row items-center md:items-center gap-3 md:mb-4 p-6 md:p-0 rounded-2xl md:rounded-none border md:border-0 border-gray-300/50 dark:border-gray-700/50 bg-white/40 dark:bg-slate-800/40 md:bg-transparent dark:md:bg-transparent backdrop-blur-md md:backdrop-blur-none w-full md:w-auto">
                 <Image 
                   src="/profile.png" 
                   alt="Marcos Frutos" 
-                  width={40} 
-                  height={40} 
-                  className="rounded-full object-cover w-10 h-10 shadow-sm"
+                  width={80} 
+                  height={80} 
+                  className="rounded-full object-cover md:w-10 md:h-10 w-20 h-20 shadow-sm"
                 />
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm group-hover:text-gray-600 dark:group-hover:text-gray-300">Marcos Frutos</h3>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">Sr Frontend Engineer</p>
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 md:text-sm text-xl group-hover:text-gray-600 dark:group-hover:text-gray-300">Marcos Frutos</h3>
+                  <p className="text-sm md:text-xs text-gray-600 dark:text-gray-400">Sr Frontend Engineer</p>
                 </div>
               </div>
-              <div className="flex gap-6">
+              <div className="flex gap-6 p-6 md:p-0 rounded-2xl md:rounded-none border md:border-0 border-gray-300/50 dark:border-gray-700/50 bg-white/40 dark:bg-slate-800/40 md:bg-transparent dark:md:bg-transparent backdrop-blur-md md:backdrop-blur-none w-full md:w-auto justify-center md:justify-start">
                 {socials.map((social) => (
                   <a
                     key={social.name}
@@ -35,16 +35,16 @@ export default function Footer() {
                     className="text-(--muted) hover:text-(--heading) transition-colors"
                     aria-label={social.name}
                   >
-                    <FontAwesomeIcon icon={social.icon} className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" />
+                    <FontAwesomeIcon icon={social.icon} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 md:w-5! md:h-5!" style={{ width: '30px', height: '30px' }} />
                   </a>
                 ))}
               </div>
-              <p className="text-xs leading-6 text-gray-600 dark:text-gray-400 text-balance mt-4">
+              <p className="hidden md:block text-xs leading-6 text-gray-600 dark:text-gray-400 text-balance mt-4">
                 © {currentYear} Marcos Frutos. All Rights Reserved.
               </p>
             </div>
               <div className="flex flex-col items-center md:items-end">
-                <div className="flex flex-col items-start">
+                <div className="flex flex-col items-start p-6 md:p-0 rounded-2xl md:rounded-none border md:border-0 border-gray-300/50 dark:border-gray-700/50 bg-white/40 dark:bg-slate-800/40 md:bg-transparent dark:md:bg-transparent backdrop-blur-md md:backdrop-blur-none w-full md:w-auto">
                   <h3 className="font-semibold mb-4 text-gray-900 dark:text-gray-100 text-sm">What I&apos;m listening to</h3>
                   <SpotifyNowPlaying />
                 </div>
@@ -52,6 +52,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        <p className="md:hidden text-xs leading-6 text-gray-600 dark:text-gray-400 text-balance text-center mt-8">
+          © {currentYear} Marcos Frutos. All Rights Reserved.
+        </p>
     </footer>
   );
 }

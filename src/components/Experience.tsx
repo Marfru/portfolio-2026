@@ -6,7 +6,7 @@ export default function Experience() {
       <div className="flex flex-col items-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100">Experience</h2>
         <p className="text-base text-center text-gray-600 dark:text-gray-300 mb-12">
-          My professional journey in frontend development
+          My professional journey since I finished my studies back in 2015. Some experiences have been better than others, but all have contributed to my growth as an engineer.
         </p>
       </div>
       

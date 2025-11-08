@@ -42,7 +42,7 @@ export default function Projects() {
       <div className="flex flex-col items-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100">Projects</h2>
         <p className="text-base text-center text-gray-600 dark:text-gray-300 mb-12">
-          My professional journey in frontend development
+          There&apos;s more to show but I will only showcase a few selected projects here. You can find the rest on my GitHub profile. Sign up to the newsletter to be notified when I release new projects!
         </p>
       </div>
       

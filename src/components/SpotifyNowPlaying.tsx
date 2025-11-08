@@ -68,7 +68,7 @@ export default function SpotifyNowPlaying() {
 
   if (loading) {
     return (
-      <div className="flex items-center gap-3 border border-gray-300/50 dark:border-gray-700/50 rounded-lg p-3 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md shadow-sm">
+      <div className="flex items-center gap-3">
         <div className="mt-1">
           <FontAwesomeIcon icon={faSpotify} style={{ width: '40px', height: '40px' }} className="text-gray-600 dark:text-gray-400 animate-pulse" />
         </div>
@@ -80,7 +80,7 @@ export default function SpotifyNowPlaying() {
   }
 
   return (
-    <div className="flex items-center gap-3 border border-gray-300/50 dark:border-gray-700/50 rounded-lg p-3 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md shadow-sm">
+    <div className="flex items-center gap-3">
       <div className="mt-1 relative">
         {spotify.isPlaying && spotify.albumImageUrl ? (
           <>
@@ -100,7 +100,7 @@ export default function SpotifyNowPlaying() {
           <FontAwesomeIcon icon={faSpotify} style={{ width: '40px', height: '40px' }} className="text-gray-600 dark:text-gray-400" />
         )}
       </div>
-      <div className="w-[150px] overflow-hidden">
+      <div className="w-[150px] overflow-hidden text-left">
         {spotify.isPlaying && spotify.songUrl ? (
           <a 
             href={spotify.songUrl} 
@@ -111,7 +111,7 @@ export default function SpotifyNowPlaying() {
             <div className="overflow-hidden">
               <p 
                 ref={titleRef}
-                className={`text-sm font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap ${
+                className={`text-sm font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap text-left ${
                   shouldAnimateTitle ? 'animate-marquee' : ''
                 }`}
               >
@@ -121,7 +121,7 @@ export default function SpotifyNowPlaying() {
             <div className="overflow-hidden">
               <p 
                 ref={artistRef}
-                className={`text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap ${
+                className={`text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap text-left ${
                   shouldAnimateArtist ? 'animate-marquee' : ''
                 }`}
               >
@@ -131,10 +131,10 @@ export default function SpotifyNowPlaying() {
           </a>
         ) : (
           <>
-            <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+            <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 text-left">
               Not Playing
             </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400 text-left">
               Spotify
             </p>
           </>
