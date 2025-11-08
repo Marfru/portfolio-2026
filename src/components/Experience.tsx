@@ -2,7 +2,7 @@ import { experience } from "@/data/experience";
 
 export default function Experience() {
   return (
-    <section id="experience" className="pb-16 md:pb-24">
+    <section id="experience" className="md:pb-24">
       <div className="flex flex-col items-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100">Experience</h2>
         <p className="text-base text-center text-gray-600 dark:text-gray-300 mb-12">

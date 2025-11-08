@@ -7,7 +7,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-12 mb-8">
+    <footer className="md:mt-12 mb-8">
       <div className="max-w-4xl mx-auto px-6 pt-12 pb-6">
         <div className="flex justify-between">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl text-center md:text-left md:justify-between">
