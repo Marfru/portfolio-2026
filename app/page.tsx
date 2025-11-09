@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Background from "@/components/common/Background";
+import TechStack from "@/components/TechStack";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <main className="max-w-4xl mx-auto px-6 py-16 md:py-24 flex-1">
           <Hero />
         </main>
+        <TechStack />
         <Footer />
       </div>
     </div>

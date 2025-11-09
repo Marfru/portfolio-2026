@@ -1,10 +1,38 @@
+"use client";
+
 import Button from "./common/Button";
 import TypingEffect from "./common/TypingEffect";
 import { faArrowUpRightFromSquare, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
 
 import Image from "next/image";
 
 export default function Hero() {
+  const [isWorking, setIsWorking] = useState(false);
+
+  useEffect(() => {
+    const checkWorkingHours = () => {
+      const now = new Date();
+      // Convert to Netherlands time (Europe/Amsterdam)
+      const netherlandsTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Amsterdam" }));
+      
+      const day = netherlandsTime.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+      const hour = netherlandsTime.getHours();
+      
+      // Monday to Friday (1-5) and between 9am-5pm
+      const isWeekday = day >= 1 && day <= 5;
+      const isWorkHours = hour >= 9 && hour < 17;
+      
+      setIsWorking(isWeekday && isWorkHours);
+    };
+
+    checkWorkingHours();
+    // Update every minute
+    const interval = setInterval(checkWorkingHours, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const welcomeWords = [
     "Welcome,",
     "Bienvenido,",
@@ -28,7 +56,7 @@ export default function Hero() {
           </h1>
         </div>
 
-        <div className="flex flex-wrap gap-6 mb-8">
+        {/* <div className="flex flex-wrap gap-6 mb-8">
           <div className="flex items-center gap-2">
             <svg className="w-6 h-6 text-slate-600 dark:text-slate-400" viewBox="0 0 256 221" fill="currentColor">
               <path d="M204.8 0H256L128 220.8L0 0h97.92L128 51.2L157.44 0h47.36z"/>
@@ -68,6 +96,17 @@ export default function Hero() {
             </svg>
             <span className="font-medium text-sm text-slate-600 dark:text-slate-400">Next.js</span>
           </div>
+        </div> */}
+
+        {/* Working Status Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50 shadow-sm">
+          <div className="relative flex items-center justify-center">
+            <span className={`absolute inline-flex h-2 w-2 rounded-full ${isWorking ? 'bg-green-400' : 'bg-red-400'} opacity-75 animate-ping`}></span>
+            <span className={`relative inline-flex rounded-full h-2 w-2 ${isWorking ? 'bg-green-500' : 'bg-red-500'}`}></span>
+          </div>
+          <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
+            {isWorking ? 'Currently working' : 'Currently resting'}
+          </span>
         </div>
 
         <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
