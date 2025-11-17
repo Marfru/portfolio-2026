@@ -25,11 +25,15 @@ export default function FeaturedExperience() {
           Experience
         </h2>
 
-        <div className="space-y-4 mb-6">
+        <div className="bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-md rounded-lg border border-gray-300/50 dark:border-gray-700/50 p-6 mb-6">
           {featuredExperiences.map((exp, index) => (
             <div
               key={index}
-              className="bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-md rounded-lg border border-gray-300/50 dark:border-gray-700/50 p-6"
+              className={
+                index > 0
+                  ? "pt-6 mt-6 border-t border-gray-300/20 dark:border-gray-700/20"
+                  : ""
+              }
             >
               <button
                 onClick={() => toggleExpanded(index)}
