@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import Button from "@/components/common/Button";
+import Image from "next/image";
 
 export default function FeaturedExperience() {
   const featuredExperiences = experience.slice(0, 2);
@@ -36,8 +37,8 @@ export default function FeaturedExperience() {
               >
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between">
                   <div className="flex-1">
-                    {!exp.endDate && (
-                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50 shadow-sm mb-2 w-fit">
+                    {/* {!exp.endDate && (
+                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50 shadow-sm mb-4 w-fit">
                         <div className="relative flex items-center justify-center">
                           <span className="absolute inline-flex h-2 w-2 rounded-full bg-green-400 opacity-75 animate-ping"></span>
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -46,28 +47,47 @@ export default function FeaturedExperience() {
                           Currently working
                         </span>
                       </div>
-                    )}
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-                        {exp.title}
-                      </h3>
-                      <FontAwesomeIcon
-                        icon={
-                          expandedIndex === index ? faChevronUp : faChevronDown
-                        }
-                        className="text-gray-400 dark:text-gray-500 w-4 h-4"
-                      />
+                    )} */}
+                    <div className="flex gap-4">
+                      {exp.logo && (
+                        <div className="shrink-0">
+                          <div className="w-12 h-12 rounded-lg border border-gray-300/50 bg-white p-2 flex items-center justify-center">
+                            <Image
+                              src={exp.logo}
+                              alt={`${exp.company} logo`}
+                              width={40}
+                              height={40}
+                              className="object-contain"
+                            />
+                          </div>
+                        </div>
+                      )}
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                            {exp.title}
+                          </h3>
+                          <FontAwesomeIcon
+                            icon={
+                              expandedIndex === index
+                                ? faChevronUp
+                                : faChevronDown
+                            }
+                            className="text-gray-400 dark:text-gray-500 w-4 h-4"
+                          />
+                        </div>
+                        <a
+                          href={exp.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={exp.ariaLabel}
+                          className="text-md text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {exp.company}
+                        </a>
+                      </div>
                     </div>
-                    <a
-                      href={exp.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={exp.ariaLabel}
-                      className="text-md text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {exp.company}
-                    </a>
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400 mt-2 md:mt-0">
                     <p>
