@@ -116,7 +116,7 @@ export default function FeaturedExperience() {
                     ))}
                   </div>
 
-                  <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+                  <ul className="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
                     {exp.description.map((item, idx) => (
                       <li key={idx} className="flex items-start">
                         <span className="text-gray-400 dark:text-gray-500 mr-2">
