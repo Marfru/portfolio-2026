@@ -10,8 +10,19 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Marcos Frutos - Senior Frontend Engineer",
-  description: "Senior Frontend Engineer passionate about crafting accessible, pixel-perfect user interfaces. Specializing in Vue.js, React, and Next.js.",
-  keywords: ["Marcos Frutos", "Frontend Engineer", "Senior Frontend Developer", "Vue.js", "React", "Next.js", "TypeScript", "Web Development", "Netherlands"],
+  description:
+    "Senior Frontend Engineer passionate about crafting accessible, pixel-perfect user interfaces. Specializing in Vue.js, React, and Next.js.",
+  keywords: [
+    "Marcos Frutos",
+    "Frontend Engineer",
+    "Senior Frontend Developer",
+    "Vue.js",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Web Development",
+    "Netherlands",
+  ],
   authors: [{ name: "Marcos Frutos", url: "https://marfru.dev" }],
   creator: "Marcos Frutos",
   openGraph: {
@@ -19,13 +30,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://marfru.dev",
     title: "Marcos Frutos - Senior Frontend Engineer",
-    description: "Senior Frontend Engineer passionate about crafting accessible, pixel-perfect user interfaces. Specializing in Vue.js, React, and Next.js.",
+    description:
+      "Senior Frontend Engineer passionate about crafting accessible, pixel-perfect user interfaces. Specializing in Vue.js, React, and Next.js.",
     siteName: "Marcos Frutos Portfolio",
   },
   twitter: {
     card: "summary_large_image",
     title: "Marcos Frutos - Senior Frontend Engineer",
-    description: "Senior Frontend Engineer passionate about crafting accessible, pixel-perfect user interfaces. Specializing in Vue.js, React, and Next.js.",
+    description:
+      "Senior Frontend Engineer passionate about crafting accessible, pixel-perfect user interfaces. Specializing in Vue.js, React, and Next.js.",
     creator: "@m4rfru",
   },
   robots: {
@@ -51,12 +64,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} antialiased`}
-      >
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem('theme');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className={`${inter.variable} antialiased`}>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
