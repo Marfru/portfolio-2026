@@ -130,7 +130,7 @@ export default function FeaturedExperience() {
 
         <div className="flex justify-center">
           <Button href="/experience" variant="primary">
-            Explore all my experience
+            Explore more
           </Button>
         </div>
       </div>
