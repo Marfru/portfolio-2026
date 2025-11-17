@@ -5,7 +5,7 @@ export const experience = [
     location: "Eindhoven, NL",
     startDate: "2020",
     url: "https://www.sendcloud.com/",
-    endDate: "Present",
+    endDate: "",
     ariaLabel: "Sendcloud website (opens in a new tab)",
     technologies: [
       "Javascript",
@@ -38,7 +38,7 @@ export const experience = [
     technologies: ["Vue", "NuxtJS", "Jest"],
     time: "1 yr",
     description: [
-      "Migrate legacy code (jQuery) to Vue and Node stack.",
+      "Migrate legacy code to Vue and Node stack.",
       "Creation of new components based on the legacy shop.",
       "Creating features requests from the Marketing domain.",
       "Expand fromn local countries to a Global shop and improve localization.",
