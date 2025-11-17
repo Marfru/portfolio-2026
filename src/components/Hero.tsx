@@ -119,7 +119,7 @@ export default function Hero() {
               ></span>
             </div>
             <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
-              {isWorking ? "Currently working" : "Currently resting"}
+              {isWorking ? "Online" : "Offline"}
             </span>
           </div>
 
