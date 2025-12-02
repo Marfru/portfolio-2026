@@ -24,8 +24,8 @@ export const projects = [
     ariaLabel: "Coloreshtml.com (opens in a new tab)",
     is_live: true,
     description:
-      "Picked up an old project from around 2014 and updated it to the latest standards.",
-    tags: ["NextJS", "Typescript", "Shadcn"],
+      "Picked up an old project from around 2014 and updated it to the latest standards. You can check the old project at https://old.coloreshtml.com/ for comparison.",
+    tags: ["NextJS", "Typescript", "Shadcn", "Spanish"],
     url: "https://coloreshtml.com/",
     logo: "coloreshtml",
   },
