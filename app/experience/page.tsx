@@ -1,5 +1,5 @@
 import Navigation from "@/components/Navigation";
-import Experience from "@/components/Experience";
+import AllExperience from "@/components/AllExperience";
 import Footer from "@/components/Footer";
 import Background from "@/components/common/Background";
 
@@ -12,7 +12,7 @@ export default function ExperiencePage() {
         <Navigation />
         <main className="flex-1">
           <div className="max-w-4xl mx-auto px-6 py-16">
-            <Experience />
+            <AllExperience />
           </div>
         </main>
         <Footer />

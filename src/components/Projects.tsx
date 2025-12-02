@@ -1,5 +1,5 @@
 import { projects } from "@/data/projects";
-import { ArrowUpRight, Code2 } from "lucide-react";
+import { ArrowUpRight, Code2, Truck } from "lucide-react";
 
 const ProjectLogo = ({ logo }: { logo: string }) => {
   if (logo === "tesla") {
@@ -25,6 +25,17 @@ const ProjectLogo = ({ logo }: { logo: string }) => {
     );
   }
 
+  if (logo === "parcelify") {
+    return (
+      <div className="flex items-center gap-2">
+        <div className="bg-blue-600 p-2 rounded-lg">
+          <Truck className="h-6 w-6 text-white" />
+        </div>
+      </div>
+    )
+
+  }
+
     if (logo === "propfolio") {
     return (
             <div className="p-2 bg-linear-to-br from-purple-500 to-pink-500 rounded-lg">
@@ -47,34 +58,42 @@ export default function Projects() {
       </div>
       
       <div className="grid md:grid-cols-2 gap-6">
-        {projects.map((project, idx) => (
-          <a
-            key={idx}
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={project.ariaLabel}
-            className="block group"
-          >
-            <div className="border border-gray-300/50 dark:border-gray-700/50 rounded-lg p-6 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md shadow-sm h-full hover:border-gray-400/50 dark:hover:border-gray-600/50 transition-colors">
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <div className="flex items-center gap-3 flex-1">
-                  <div className="shrink-0">
-                    <ProjectLogo logo={project.logo} />
+        {projects.map((project, idx) => {
+          const Container = project.is_live ? 'a' : 'div';
+          const containerProps = project.is_live ? {
+            href: project.url,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            'aria-label': project.ariaLabel,
+          } : {};
+
+          return (
+            <Container
+              key={idx}
+              {...containerProps}
+              className={`block ${project.is_live ? 'group cursor-pointer' : ''}`}
+            >
+              <div className={`border border-gray-300/50 dark:border-gray-700/50 rounded-lg p-6 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md shadow-sm h-full transition-colors ${project.is_live ? 'hover:border-gray-400/50 dark:hover:border-gray-600/50' : ''}`}>
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div className="flex items-center gap-3 flex-1">
+                    <div className="shrink-0">
+                      <ProjectLogo logo={project.logo} />
+                    </div>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className={`text-lg font-semibold text-gray-900 dark:text-gray-100 ${project.is_live ? 'group-hover:underline' : ''}`}>
+                        {project.title}
+                      </h3>
+                      {!project.is_live && (
+                        <span className="-mt-3 px-2 py-0.5 text-xs font-medium rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-300 dark:border-amber-700">
+                          Coming Soon
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-lg font-semibold group-hover:underline text-gray-900 dark:text-gray-100">
-                      {project.title}
-                    </h3>
-                    {!project.is_live && (
-                      <span className="-mt-3 px-2 py-0.5 text-xs font-medium rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-300 dark:border-amber-700">
-                        Coming Soon
-                      </span>
-                    )}
-                  </div>
+                  {project.is_live && (
+                    <ArrowUpRight className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-300 transition-colors shrink-0" />
+                  )}
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-300 transition-colors shrink-0" />
-              </div>
 
               <p className="text-zinc-600 dark:text-zinc-300 text-sm mb-4">
                 {project.description}
@@ -91,8 +110,9 @@ export default function Projects() {
                 ))}
               </div>
             </div>
-          </a>
-        ))}
+          </Container>
+        );
+        })}
       </div>
     </section>
   );
