@@ -34,7 +34,7 @@ export const projects = [
     ariaLabel: "Tesla App (opens in a new tab)",
     is_live: true,
     description:
-      "They have a tutorial for this calculator (without the landing page) for React. But I built it using Vanilla JS, Intersections and Mutations, SCSS, Webpack.",
+      "Basic Tesla performance calculator landing page, built using Vanilla JS, Intersections and Mutations, SCSS, Webpack.",
     tags: ["VanillaJS", "HTML", "SCSS", "Webpack"],
     url: "https://laughing-fermat-878689.netlify.app/",
     logo: "tesla",
