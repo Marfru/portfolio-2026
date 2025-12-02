@@ -4,7 +4,7 @@ export const projects = [
     ariaLabel: "Propfolio.dev (opens in a new tab)",
     description:
       "A platform to create and manage your developer / engineer portfolio easily to show to recruiters and clients. Highly customizable and interactive.",
-    tags: ["NextJS", "Typescript", "Tailwind", "Supabase", "Stripe"],
+    tags: ["Beta", "NextJS", "Typescript", "Tailwind", "Supabase", "Stripe"],
     url: "https://propfolio.dev/",
     logo: "propfolio",
     is_live: false,
@@ -14,7 +14,7 @@ export const projects = [
     ariaLabel: "parcelify.nl (opens in a new tab)",
     description:
       "Create your own independent courier service to deliver parcels within the Netherlands, with an interactive and asynchronous order management and tracking system, notification delivery service via email and much more.",
-    tags: ["NextJS", "Typescript", "Tailwind", "Supabase"],
+    tags: ["Beta","NextJS", "Typescript", "Tailwind", "Supabase"],
     url: "https://parcelify.nl/",
     logo: "parcelify",
     is_live: false,
