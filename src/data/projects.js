@@ -19,6 +19,16 @@ export const projects = [
     logo: "parcelify",
     is_live: false,
   },
+      {
+    title: "Sendcloud FE Mac App",
+    ariaLabel: "parcelify.nl (opens in a new tab)",
+    description:
+      "Created a MacOS desktop application for Sendcloud's Frontend team. The app integrates various tools, services and documentation used by the team, providing quick access.",
+    tags: ["ElectronJS", "NextJS", "Tailwind"],
+    url: "https://parcelify.nl/",
+    logo: "sendcloud",
+    is_live: true,
+  },
     {
     title: "ColoresHTML",
     ariaLabel: "Coloreshtml.com (opens in a new tab)",

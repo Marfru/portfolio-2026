@@ -1,5 +1,9 @@
+"use client";
+
 import { projects } from "@/data/projects";
-import { ArrowUpRight, Code2, Truck } from "lucide-react";
+import { ArrowUpRight, Code2, Truck, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const ProjectLogo = ({ logo }: { logo: string }) => {
   if (logo === "tesla") {
@@ -41,6 +45,21 @@ const ProjectLogo = ({ logo }: { logo: string }) => {
             <div className="p-2 bg-linear-to-br from-purple-500 to-pink-500 rounded-lg">
                 <Code2 className="h-5 w-5 text-white" />
               </div>
+    );
+  }
+
+      if (logo === "sendcloud") {
+    return (
+<svg className="w-8 h-8" xmlns="http://www.w3.org/2000/svg" x="0" y="0" version="1.1" viewBox="108.5 108.5 108.6 108.6" xmlSpace="preserve">
+  <defs>
+    <linearGradient id="SVGID_1_" x1="108.51" x2="217.01" y1="162.76" y2="162.76" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stopColor="#00d2f6"/>
+      <stop offset="1" stopColor="#1d96ff"/>
+    </linearGradient>
+  </defs>
+  <path d="M141 108.5h43.6c11.3 0 15.4 1.2 19.5 3.4s7.4 5.4 9.6 9.6c2.2 4.1 3.4 8.2 3.4 19.5v43.6c0 11.3-1.2 15.4-3.4 19.5a22.8 22.8 0 01-9.6 9.6c-4.1 2.2-8.2 3.4-19.5 3.4H141c-11.3 0-15.4-1.2-19.5-3.4a22.8 22.8 0 01-9.6-9.6c-2.2-4.1-3.4-8.2-3.4-19.5V141c0-11.3 1.2-15.4 3.4-19.5s5.4-7.4 9.6-9.6c4.1-2.2 8.2-3.4 19.5-3.4z" fill="url(#SVGID_1_)" fillRule="evenodd" clipRule="evenodd"/>
+  <path d="M199.3 169.4c0-8.6-6.6-15.8-15-16.7-1.2-4.3-3.8-8.3-7.3-11.2-4-3.3-9.1-5.2-14.4-5.2s-10.3 1.8-14.4 5.2c-3.5 2.9-6 6.8-7.3 11.2-8.4.9-15 8-15 16.7 0 .8.1 6.7 4.5 11.3 3.4 3.5 8.2 5.2 14.5 5.2 6 0 11.9-1 17.6-3.1 1.8.6 3.6 1.2 5.4 1.6 4 1 8.1 1.5 12.1 1.5 6.3 0 11.1-1.8 14.5-5.2 4.7-4.6 4.8-10.4 4.8-11.3zm-4.5 0s.1 4.7-3.3 8.1c-2.5 2.5-6.2 3.8-11.1 3.8-8.4 0-15.1-2.3-19.3-4.2-4-1.8-6.5-3.6-7.1-4.1-.1 0-.1-.1-.1-.2V163c0-.2.1-.3.3-.4l8.6-4.4c.1-.1.3-.1.4 0l8.6 4.4c.2.1.3.2.3.4v9.6c0 .1-.1.3-.1.3-.4.3-1.9 1.4-4.2 2.7 1.9.6 4.1 1.1 6.4 1.4.5-.4.8-.6.8-.6.8-.7 1.7-2 1.7-3.8V163c0-1.9-1.1-3.6-2.7-4.5l-8.6-4.4a5.3 5.3 0 00-4.6 0l-8.6 4.4c-1.7.9-2.7 2.6-2.7 4.5v9.6c0 1.7.9 3.1 1.7 3.8.1.1 2 1.6 5.5 3.5-3.7.9-7.4 1.3-11.2 1.3-4.9 0-8.7-1.3-11.1-3.8-3.3-3.4-3.3-8-3.3-8.1v-.1c0-6.7 5.5-12.2 12.2-12.2h1.9l.4-1.9c.8-4 3-7.7 6.1-10.3 3.2-2.7 7.3-4.1 11.4-4.1s8.2 1.5 11.4 4.1c3.2 2.6 5.3 6.3 6.1 10.3l.4 1.9h1.9c6.4.2 11.9 5.6 11.9 12.4z" fill="#fff"/>
+</svg>
     );
   }
 
@@ -89,6 +108,32 @@ const parseDescription = (text: string) => {
 };
 
 export default function Projects() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [modalOpen]);
+
+  const handleProjectClick = (project: any) => {
+    if (project.logo === "sendcloud") {
+      setSelectedProject(project);
+      setModalOpen(true);
+    }
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <section id="projects">
       <div className="flex flex-col items-center">
@@ -118,7 +163,7 @@ export default function Projects() {
                     )}
                   </div>
                 </div>
-                {project.is_live && (
+                {project.is_live && project.logo !== "sendcloud" && (
                   <a
                     href={project.url}
                     target="_blank"
@@ -128,6 +173,15 @@ export default function Projects() {
                   >
                     <ArrowUpRight className="w-4 h-4 text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300 transition-colors" />
                   </a>
+                )}
+                {project.is_live && project.logo === "sendcloud" && (
+                  <button
+                    onClick={() => handleProjectClick(project)}
+                    aria-label="View project details"
+                    className="shrink-0 cursor-pointer"
+                  >
+                    <ArrowUpRight className="w-4 h-4 text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300 transition-colors" />
+                  </button>
                 )}
               </div>
 
@@ -153,6 +207,65 @@ export default function Projects() {
           </div>
         ))}
       </div>
+
+      {/* Modal */}
+      {modalOpen && selectedProject && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+          onClick={closeModal}
+        >
+          <div 
+            className="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-slate-800 rounded-lg shadow-xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800">
+              <div className="flex items-center gap-3">
+                <ProjectLogo logo={selectedProject.logo} />
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  {selectedProject.title}
+                </h3>
+              </div>
+              <button
+                onClick={closeModal}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors cursor-pointer"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+              </button>
+            </div>
+            
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)]">
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                {selectedProject.description}
+              </p>
+              
+              <div className="flex flex-wrap gap-2 mb-6">
+                {selectedProject.tags.map((tag: string, i: number) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 text-xs rounded-full bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Add your modal content here */}
+              <div className="space-y-6">
+                <div className="flex justify-center">
+                  <Image
+                    src="/scfe-app.png"
+                    alt="Sendcloud FE App"
+                    width={800}
+                    height={550}
+                    className="w-full h-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
