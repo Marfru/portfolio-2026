@@ -39,6 +39,11 @@ html {
   color: var(--color-foreground);
 }
 
+.dark ::selection {
+  background-color: #ffffff;
+  color: #000000;
+}
+
 /* Marquee Animation for Spotify */
 @keyframes marquee {
   0% {

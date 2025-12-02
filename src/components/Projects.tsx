@@ -58,42 +58,37 @@ export default function Projects() {
       </div>
       
       <div className="grid md:grid-cols-2 gap-6">
-        {projects.map((project, idx) => {
-          const Container = project.is_live ? 'a' : 'div';
-          const containerProps = project.is_live ? {
-            href: project.url,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            'aria-label': project.ariaLabel,
-          } : {};
-
-          return (
-            <Container
-              key={idx}
-              {...containerProps}
-              className={`block ${project.is_live ? 'group cursor-pointer' : ''}`}
-            >
-              <div className={`border border-gray-300/50 dark:border-gray-700/50 rounded-lg p-6 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md shadow-sm h-full transition-colors ${project.is_live ? 'hover:border-gray-400/50 dark:hover:border-gray-600/50' : ''}`}>
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <div className="flex items-center gap-3 flex-1">
-                    <div className="shrink-0">
-                      <ProjectLogo logo={project.logo} />
-                    </div>
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className={`text-lg font-semibold text-gray-900 dark:text-gray-100 ${project.is_live ? 'group-hover:underline' : ''}`}>
-                        {project.title}
-                      </h3>
-                      {!project.is_live && (
-                        <span className="-mt-3 px-2 py-0.5 text-xs font-medium rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-300 dark:border-amber-700">
-                          Coming Soon
-                        </span>
-                      )}
-                    </div>
+        {projects.map((project, idx) => (
+          <div key={idx} className="group">
+            <div className={`border border-gray-300/50 dark:border-gray-700/50 rounded-lg p-6 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md shadow-sm h-full transition-colors ${project.is_live ? 'group-hover:border-gray-400/50 dark:group-hover:border-gray-600/50' : ''}`}>
+              <div className="flex items-start justify-between gap-4 mb-3">
+                <div className="flex items-center gap-3 flex-1">
+                  <div className="shrink-0">
+                    <ProjectLogo logo={project.logo} />
                   </div>
-                  {project.is_live && (
-                    <ArrowUpRight className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-300 transition-colors shrink-0" />
-                  )}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                      {project.title}
+                    </h3>
+                    {!project.is_live && (
+                      <span className="-mt-3 px-2 py-0.5 text-xs font-medium rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-300 dark:border-amber-700">
+                        Coming Soon
+                      </span>
+                    )}
+                  </div>
                 </div>
+                {project.is_live && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={project.ariaLabel}
+                    className="shrink-0"
+                  >
+                    <ArrowUpRight className="w-4 h-4 text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300 transition-colors" />
+                  </a>
+                )}
+              </div>
 
               <p className="text-zinc-600 dark:text-zinc-300 text-sm mb-4">
                 {project.description}
@@ -114,9 +109,8 @@ export default function Projects() {
                 ))}
               </div>
             </div>
-          </Container>
-        );
-        })}
+          </div>
+        ))}
       </div>
     </section>
   );
