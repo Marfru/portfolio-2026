@@ -47,6 +47,47 @@ const ProjectLogo = ({ logo }: { logo: string }) => {
   return null;
 };
 
+// Helper function to convert URLs in text to clickable links
+const parseDescription = (text: string) => {
+  // Regex to match URLs (including those without http/https)
+  const urlRegex = /(\b(?:https?:\/\/)?(?:www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?(?:\/[^\s]*)?)/g;
+  
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+  
+  while ((match = urlRegex.exec(text)) !== null) {
+    // Add text before the URL
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    
+    // Add the URL as a link
+    const url = match[0];
+    const href = url.startsWith('http') ? url : `https://${url}`;
+    parts.push(
+      <a
+        key={match.index}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 dark:text-blue-500 hover:underline"
+      >
+        {url}
+      </a>
+    );
+    
+    lastIndex = match.index + match[0].length;
+  }
+  
+  // Add remaining text after the last URL
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+  
+  return parts.length > 0 ? parts : text;
+};
+
 export default function Projects() {
   return (
     <section id="projects">
@@ -91,7 +132,7 @@ export default function Projects() {
               </div>
 
               <p className="text-zinc-600 dark:text-zinc-300 text-sm mb-4">
-                {project.description}
+                {parseDescription(project.description)}
               </p>
 
               <div className="flex flex-wrap gap-2">
