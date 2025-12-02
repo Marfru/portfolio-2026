@@ -3,7 +3,7 @@ export const projects = [
     title: "PropFolio",
     ariaLabel: "Propfolio.dev (opens in a new tab)",
     description:
-      "A platform to create and manage your developer / engineer portfolio easily to show to recruiters and clients. Highly customizable and interactive.",
+      "A platform to create and manage your developer / engineer portfolio easily to show to recruiters and clients. Highly customizable and interactive, with custom widgets like public Github repositories, Youtube Intro, etc.",
     tags: ["Beta", "NextJS", "Typescript", "Tailwind", "Supabase", "Stripe"],
     url: "https://propfolio.dev/",
     logo: "propfolio",
